@@ -1,0 +1,12 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr max-content;
+
+  min-height: 100dvh;
+
+  background: url("hero_img.jpg");
+  background-repeat: no-repeat;
+  background-position: cover;
+  background-size: 100% 75%;
+}
