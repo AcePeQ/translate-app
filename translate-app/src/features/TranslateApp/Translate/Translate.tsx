@@ -26,13 +26,22 @@ function Translate() {
     setTranslateOptions((prevOptions) => {
       return {
         ...prevOptions,
-        translateToText: newText,
+        translateFromText: newText,
       };
     });
   }
 
   function handleTranslateText() {
-    translateText(translateOptions);
+    translateText(translateOptions, {
+      onSuccess: (data) => {
+        setTranslateOptions((prevOptions) => {
+          return {
+            ...prevOptions,
+            translateToText: data.translatedText,
+          };
+        });
+      },
+    });
   }
 
   function handleChangeLanguage(property: string, newLanguage: string) {
@@ -44,9 +53,25 @@ function Translate() {
     });
   }
 
+  function handleSwapLanguages() {
+    setTranslateOptions((prevOptions) => {
+      const newOptions = {
+        translateFromLanguage: prevOptions.translateToLanguage,
+        translateToLanguage: prevOptions.translateFromLanguage,
+        translateFromText: prevOptions.translateToText,
+        translateToText: prevOptions.translateFromText,
+      };
+
+      return newOptions;
+    });
+  }
+
+  const queryLength = translateOptions.translateFromText.length;
+
   return (
     <>
       <TranslateWrapper
+        queryLength={queryLength}
         onClickTranslate={handleTranslateText}
         isDisabled={isTranslating}
         tabs={
@@ -74,6 +99,7 @@ function Translate() {
         theme="light"
       >
         <textarea
+          maxLength={500}
           disabled={isTranslating}
           value={translateOptions.translateFromText}
           onChange={(e) => handleChangeTranslatedText(e.target.value)}
@@ -81,6 +107,7 @@ function Translate() {
       </TranslateWrapper>
 
       <TranslateWrapper
+        onSwapLanguages={handleSwapLanguages}
         isDisabled={isTranslating}
         theme="dark"
         tabs={

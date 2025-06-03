@@ -12,8 +12,6 @@ export function useTranslateText() {
   const { mutate: translateText, isPending: isTranslating } = useMutation({
     mutationFn: (translateOptions: ITranslateOptions) =>
       translateTextApi(translateOptions),
-    onSuccess: () => {},
-    onError: () => {},
   });
 
   return { translateText, isTranslating };

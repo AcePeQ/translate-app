@@ -3,4 +3,11 @@
   border: 2px solid var(--color-gray-2);
   padding: 0.5rem;
   border-radius: 1rem;
+
+  cursor: pointer;
+  transition: all 0.4s;
+
+  &:hover {
+    border: 2px solid var(--color-gray-5);
+  }
 }

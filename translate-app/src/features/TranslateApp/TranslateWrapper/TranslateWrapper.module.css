@@ -24,7 +24,13 @@
     border: 0;
     resize: none;
 
+    padding: 0 8px;
+
     color: var(--color-white);
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 }
 

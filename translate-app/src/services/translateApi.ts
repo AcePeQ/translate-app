@@ -2,25 +2,23 @@ import type { ITranslateOptions } from "../features/TranslateApp/useTranslateTex
 
 export async function translateTextApi(translateOptions: ITranslateOptions) {
   try {
+    const { translateFromText, translateFromLanguage, translateToLanguage } =
+      translateOptions;
+
     const res = await fetch(
-      `https://api.mymemory.translated.net/get?q=${translateOptions.translateFromText}&langpair=${translateOptions.translateFromLanguage}|${translateOptions.translateToLanguage}`,
+      `https://api.mymemory.translated.net/get?q=${translateFromText}&langpair=${translateFromLanguage}|${translateToLanguage}`,
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
     );
-
-    console.log(translateOptions);
-    console.log(res);
 
     if (!res.ok) {
       throw new Error("Translate went wrong!");
     }
 
-    const data = res.json();
-    return data;
+    const data = await res.json();
+
+    return data.responseData;
   } catch (error) {
     console.error(error);
   }

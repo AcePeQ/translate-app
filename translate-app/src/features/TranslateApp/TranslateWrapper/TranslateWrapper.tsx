@@ -5,11 +5,13 @@ import Button from "../../../components/Button/Button";
 
 interface ITranslateWrapper {
   theme: string;
-  children: ReactElement;
+  queryLength?: number;
   isTranslateBox?: boolean;
-  tabs: ReactElement;
   isDisabled: boolean;
+  tabs: ReactElement;
+  children: ReactElement;
   onClickTranslate?: () => void;
+  onSwapLanguages?: () => void;
 }
 
 function TranslateWrapper({
@@ -19,6 +21,8 @@ function TranslateWrapper({
   isDisabled,
   isTranslateBox = true,
   onClickTranslate,
+  queryLength,
+  onSwapLanguages,
 }: ITranslateWrapper) {
   return (
     <div className={`${styles.container} ${styles[theme]}`}>
@@ -29,7 +33,9 @@ function TranslateWrapper({
             isDisabled={isDisabled}
             label="switch language transition"
             icon="Horizontal_top_left_main.svg"
-            onClick={() => {}}
+            onClick={() => {
+              if (onSwapLanguages) onSwapLanguages();
+            }}
           />
         )}
       </div>
@@ -48,7 +54,9 @@ function TranslateWrapper({
             icon="Copy.svg"
             onClick={() => {}}
           />
-          {isTranslateBox && <p className={styles.wordCounter}>0/500</p>}
+          {isTranslateBox && (
+            <p className={styles.wordCounter}>{queryLength}/500</p>
+          )}
         </div>
         {isTranslateBox && (
           <Button
