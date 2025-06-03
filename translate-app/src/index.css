@@ -1,0 +1,75 @@
+:root {
+  --color-white: #f9fafb;
+  --color-black: #040711;
+
+  --color-blue-1: #7ca9f3;
+  --color-blue-2: #263fa9;
+
+  --color-gray-1: #d2d5da;
+  --color-gray-2: #4d5562;
+  --color-gray-3: #212936cc;
+  --color-gray-4: #121826cc;
+  --color-gray-5: #394150;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialisaed;
+
+  min-height: 100dvh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
