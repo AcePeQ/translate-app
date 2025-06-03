@@ -1,0 +1,69 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr max-content;
+
+  gap: 1.5rem;
+
+  padding: 1.5rem 3rem;
+
+  border-radius: 2rem;
+
+  height: 350px;
+
+  menu {
+    list-style: none;
+
+    display: flex;
+
+    gap: 1rem;
+  }
+
+  textarea {
+    background: transparent;
+    border: 0;
+    resize: none;
+
+    color: var(--color-white);
+  }
+}
+
+.light {
+  background-color: var(--color-gray-3);
+  border: 2px solid var(--color-gray-2);
+}
+
+.dark {
+  background-color: var(--color-gray-4);
+  border: 2px solid var(--color-gray-2);
+}
+
+.tabsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1.25px solid var(--color-gray-2);
+}
+
+.wrapperFooter {
+  display: flex;
+  justify-content: space-between;
+
+  min-height: 4.8rem;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: flex-end;
+  align-self: flex-end;
+  gap: 1rem;
+}
+
+.wordCounter {
+  color: var(--color-white);
+  font-size: 1.4rem;
+  margin-left: 1rem;
+}

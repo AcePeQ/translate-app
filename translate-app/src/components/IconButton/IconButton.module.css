@@ -1,0 +1,6 @@
+.button {
+  background-color: transparent;
+  border: 2px solid var(--color-gray-2);
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
