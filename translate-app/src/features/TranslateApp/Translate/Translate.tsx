@@ -53,7 +53,6 @@ function Translate() {
   }
 
   function handleTranslateText() {
-    console.log(translateOptions);
     translateText(translateOptions, {
       onSuccess: (data) => {
         setTranslateOptions((prevOptions) => {

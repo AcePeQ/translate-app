@@ -5,8 +5,17 @@
 
   min-height: 100dvh;
 
-  background: url("hero_img.jpg");
+  background: url("/hero_img.jpg");
   background-repeat: no-repeat;
   background-position: cover;
   background-size: 100% 75%;
+}
+
+@media screen and (max-width: 1280px) {
+  .layout {
+    background: url("/hero_img.jpg");
+    background-repeat: no-repeat;
+    background-position: cover;
+    background-size: unset;
+  }
 }
