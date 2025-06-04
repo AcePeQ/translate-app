@@ -16,6 +16,7 @@ function TabCTAFooter({
   onClickTranslate,
   queryLength,
   onCopyToClipboard,
+  onTextToSpeach,
 }: ITabCTAFooter) {
   return (
     <div className={styles.wrapperFooter}>
@@ -24,7 +25,7 @@ function TabCTAFooter({
           isDisabled={isDisabled}
           label="speach voice"
           icon="sound_max_fill.svg"
-          onClick={() => {}}
+          onClick={onTextToSpeach}
         />
         <IconButton
           isDisabled={isDisabled}

@@ -28,6 +28,14 @@ function handleCopyToClipBoard(stringToCopy: string) {
   navigator.clipboard.writeText(stringToCopy);
 }
 
+function handleTextToSpeach(textToSpeach: string, language: string) {
+  const synth = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(textToSpeach);
+  utterance.lang = language;
+
+  synth.speak(utterance);
+}
+
 function Translate() {
   const { translateText, isTranslating } = useTranslateText();
 
@@ -119,6 +127,12 @@ function Translate() {
           <TabCTAFooter
             isDisabled={isTranslating}
             onClickTranslate={handleTranslateText}
+            onTextToSpeach={() =>
+              handleTextToSpeach(
+                translateOptions.translateFromText,
+                translateOptions.translateFromLanguage
+              )
+            }
             onCopyToClipboard={() =>
               handleCopyToClipBoard(translateOptions.translateFromText)
             }
@@ -160,6 +174,12 @@ function Translate() {
           ></textarea>
           <TabCTAFooter
             isDisabled={isTranslating}
+            onTextToSpeach={() =>
+              handleTextToSpeach(
+                translateOptions.translateToText,
+                translateOptions.translateToLanguage
+              )
+            }
             onCopyToClipboard={() =>
               handleCopyToClipBoard(translateOptions.translateToText)
             }
