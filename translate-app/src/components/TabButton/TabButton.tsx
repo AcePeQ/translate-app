@@ -2,10 +2,10 @@ import type { ReactElement } from "react";
 import styles from "./TabButton.module.css";
 
 interface ITabButton {
-  isActive: boolean;
   onClick: () => void;
-  isDisabled: boolean;
   children: ReactElement | string;
+  isActive: boolean;
+  isDisabled: boolean;
 }
 
 function TabButton({ isActive, isDisabled, onClick, children }: ITabButton) {

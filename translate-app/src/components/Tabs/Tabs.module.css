@@ -1,0 +1,9 @@
+.tabsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1.25px solid var(--color-gray-2);
+}

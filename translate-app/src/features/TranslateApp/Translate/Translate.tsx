@@ -2,6 +2,8 @@ import { useState } from "react";
 import TabButton from "../../../components/TabButton/TabButton";
 import TranslateWrapper from "../TranslateWrapper/TranslateWrapper";
 import { useTranslateText } from "../useTranslateText";
+import Tabs from "../../../components/Tabs/Tabs";
+import TabCTAFooter from "../../../components/TabCTAFooter/TabCTAFooter";
 
 const LANGUAGE_TABS = [
   { languageName: "English", languageISO: "en" },
@@ -70,71 +72,77 @@ function Translate() {
 
   return (
     <>
-      <TranslateWrapper
-        queryLength={queryLength}
-        onClickTranslate={handleTranslateText}
-        isDisabled={isTranslating}
-        tabs={
-          <>
-            {LANGUAGE_TABS.map((tab) => (
-              <li key={tab.languageISO}>
-                <TabButton
-                  isDisabled={isTranslating}
-                  isActive={
-                    tab.languageISO === translateOptions.translateFromLanguage
-                  }
-                  onClick={() =>
-                    handleChangeLanguage(
-                      "translateFromLanguage",
-                      tab.languageISO
-                    )
-                  }
-                >
-                  {tab.languageName}
-                </TabButton>
-              </li>
-            ))}
-          </>
-        }
-        theme="light"
-      >
-        <textarea
-          maxLength={500}
-          disabled={isTranslating}
-          value={translateOptions.translateFromText}
-          onChange={(e) => handleChangeTranslatedText(e.target.value)}
-        ></textarea>
+      <TranslateWrapper theme="light">
+        <>
+          <Tabs isDisabled={isTranslating}>
+            <>
+              {LANGUAGE_TABS.map((tab) => (
+                <li key={tab.languageISO}>
+                  <TabButton
+                    isDisabled={isTranslating}
+                    isActive={
+                      tab.languageISO === translateOptions.translateFromLanguage
+                    }
+                    onClick={() =>
+                      handleChangeLanguage(
+                        "translateFromLanguage",
+                        tab.languageISO
+                      )
+                    }
+                  >
+                    {tab.languageName}
+                  </TabButton>
+                </li>
+              ))}
+            </>
+          </Tabs>
+          <textarea
+            maxLength={500}
+            disabled={isTranslating}
+            value={translateOptions.translateFromText}
+            onChange={(e) => handleChangeTranslatedText(e.target.value)}
+          ></textarea>
+          <TabCTAFooter
+            isDisabled={isTranslating}
+            onClickTranslate={handleTranslateText}
+            queryLength={queryLength}
+          />
+        </>
       </TranslateWrapper>
 
-      <TranslateWrapper
-        onSwapLanguages={handleSwapLanguages}
-        isDisabled={isTranslating}
-        theme="dark"
-        tabs={
-          <>
-            {LANGUAGE_TABS.map((tab) => (
-              <li key={tab.languageISO}>
-                <TabButton
-                  isDisabled={isTranslating}
-                  isActive={
-                    tab.languageISO === translateOptions.translateToLanguage
-                  }
-                  onClick={() =>
-                    handleChangeLanguage("translateToLanguage", tab.languageISO)
-                  }
-                >
-                  {tab.languageName}
-                </TabButton>
-              </li>
-            ))}
-          </>
-        }
-        isTranslateBox={false}
-      >
-        <textarea
-          disabled={true}
-          value={translateOptions.translateToText}
-        ></textarea>
+      <TranslateWrapper theme="dark">
+        <>
+          <Tabs
+            isDisabled={isTranslating}
+            onSwapLanguages={handleSwapLanguages}
+          >
+            <>
+              {LANGUAGE_TABS.map((tab) => (
+                <li key={tab.languageISO}>
+                  <TabButton
+                    isDisabled={isTranslating}
+                    isActive={
+                      tab.languageISO === translateOptions.translateToLanguage
+                    }
+                    onClick={() =>
+                      handleChangeLanguage(
+                        "translateToLanguage",
+                        tab.languageISO
+                      )
+                    }
+                  >
+                    {tab.languageName}
+                  </TabButton>
+                </li>
+              ))}
+            </>
+          </Tabs>
+          <textarea
+            disabled={true}
+            value={translateOptions.translateToText}
+          ></textarea>
+          <TabCTAFooter isDisabled={isTranslating} />
+        </>
       </TranslateWrapper>
     </>
   );
