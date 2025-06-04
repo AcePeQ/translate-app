@@ -15,6 +15,7 @@ function TabCTAFooter({
   isDisabled,
   onClickTranslate,
   queryLength,
+  onCopyToClipboard,
 }: ITabCTAFooter) {
   return (
     <div className={styles.wrapperFooter}>
@@ -29,7 +30,7 @@ function TabCTAFooter({
           isDisabled={isDisabled}
           label="copy to clipboard"
           icon="Copy.svg"
-          onClick={() => {}}
+          onClick={onCopyToClipboard}
         />
         {onClickTranslate && (
           <p className={styles.wordCounter}>{queryLength}/500</p>

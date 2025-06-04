@@ -17,6 +17,10 @@ const INITIAL_TRANSTLATE_OPTIONS = {
   translateToText: "Bonjour, comment allez-vous?",
 };
 
+function handleCopyToClipBoard(stringToCopy: string) {
+  navigator.clipboard.writeText(stringToCopy);
+}
+
 function Translate() {
   const { translateText, isTranslating } = useTranslateText();
 
@@ -105,6 +109,9 @@ function Translate() {
           <TabCTAFooter
             isDisabled={isTranslating}
             onClickTranslate={handleTranslateText}
+            onCopyToClipboard={() =>
+              handleCopyToClipBoard(translateOptions.translateFromText)
+            }
             queryLength={queryLength}
           />
         </>
@@ -141,7 +148,12 @@ function Translate() {
             disabled={true}
             value={translateOptions.translateToText}
           ></textarea>
-          <TabCTAFooter isDisabled={isTranslating} />
+          <TabCTAFooter
+            isDisabled={isTranslating}
+            onCopyToClipboard={() =>
+              handleCopyToClipBoard(translateOptions.translateToText)
+            }
+          />
         </>
       </TranslateWrapper>
     </>
