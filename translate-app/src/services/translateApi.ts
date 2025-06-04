@@ -6,7 +6,9 @@ export async function translateTextApi(translateOptions: ITranslateOptions) {
       translateOptions;
 
     const res = await fetch(
-      `https://api.mymemory.translated.net/get?q=${translateFromText}&langpair=${translateFromLanguage}|${translateToLanguage}`,
+      `https://api.mymemory.translated.net/get?q=${translateFromText}&langpair=${
+        translateFromLanguage === "auto" ? "de" : translateFromLanguage
+      }|${translateToLanguage}`,
       {
         method: "GET",
       }

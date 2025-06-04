@@ -5,9 +5,16 @@ import { useTranslateText } from "../useTranslateText";
 import Tabs from "../../../components/Tabs/Tabs";
 import TabCTAFooter from "../../../components/TabCTAFooter/TabCTAFooter";
 
-const LANGUAGE_TABS = [
+const TRANSLATE_TO_LANGUAGE_TABS = [
   { languageName: "English", languageISO: "en" },
   { languageName: "French", languageISO: "fr" },
+  { languageName: "Polish", languageISO: "pl" },
+  { languageName: "Spanish", languageISO: "es" },
+];
+
+const TRANSLATE_FROM_LANGUAGE_TABS = [
+  { languageName: "Detect Language", languageISO: "auto" },
+  ...TRANSLATE_TO_LANGUAGE_TABS,
 ];
 
 const INITIAL_TRANSTLATE_OPTIONS = {
@@ -38,6 +45,7 @@ function Translate() {
   }
 
   function handleTranslateText() {
+    console.log(translateOptions);
     translateText(translateOptions, {
       onSuccess: (data) => {
         setTranslateOptions((prevOptions) => {
@@ -61,9 +69,11 @@ function Translate() {
 
   function handleSwapLanguages() {
     setTranslateOptions((prevOptions) => {
+      const fromLang = prevOptions.translateFromLanguage || "en";
+
       const newOptions = {
         translateFromLanguage: prevOptions.translateToLanguage,
-        translateToLanguage: prevOptions.translateFromLanguage,
+        translateToLanguage: fromLang,
         translateFromText: prevOptions.translateToText,
         translateToText: prevOptions.translateFromText,
       };
@@ -80,7 +90,7 @@ function Translate() {
         <>
           <Tabs isDisabled={isTranslating}>
             <>
-              {LANGUAGE_TABS.map((tab) => (
+              {TRANSLATE_FROM_LANGUAGE_TABS.map((tab) => (
                 <li key={tab.languageISO}>
                   <TabButton
                     isDisabled={isTranslating}
@@ -124,7 +134,7 @@ function Translate() {
             onSwapLanguages={handleSwapLanguages}
           >
             <>
-              {LANGUAGE_TABS.map((tab) => (
+              {TRANSLATE_TO_LANGUAGE_TABS.map((tab) => (
                 <li key={tab.languageISO}>
                   <TabButton
                     isDisabled={isTranslating}
